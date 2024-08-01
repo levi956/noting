@@ -28,7 +28,7 @@ class CreateNotePage extends HookConsumerWidget {
               id: Uuid.generateV4(),
               title: titleController.text,
               content: notesController.text,
-              date: DateTime.now(),
+              createdAt: DateTime.now(),
             );
             pop<Note>(context, note_);
           }

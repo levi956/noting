@@ -15,7 +15,7 @@ class Note extends HiveObject {
   String content;
 
   @HiveField(3)
-  DateTime date;
+  DateTime createdAt;
 
   @HiveField(4)
   DateTime? deletedAt;
@@ -24,16 +24,18 @@ class Note extends HiveObject {
     required this.id,
     required this.title,
     required this.content,
-    required this.date,
+    required this.createdAt,
     this.deletedAt,
   });
+
+  String get date => formatDateTime(createdAt);
 
   factory Note.fromJson(Map<String, dynamic> json) {
     return Note(
       id: json["id"].toString(),
       title: json["name"],
       content: json["body"],
-      date: generateRandomDateTimeWithinCurrentWeek(),
+      createdAt: generateRandomDateTimeWithinCurrentWeek(),
       deletedAt: null,
     );
   }
@@ -42,14 +44,14 @@ class Note extends HiveObject {
     String? id,
     String? title,
     String? content,
-    DateTime? date,
+    DateTime? createdAt,
     DateTime? deletedAt,
   }) {
     return Note(
       id: id ?? this.id,
       title: title ?? this.title,
       content: content ?? this.content,
-      date: date ?? this.date,
+      createdAt: createdAt ?? this.createdAt,
       deletedAt: deletedAt ?? this.deletedAt,
     );
   }

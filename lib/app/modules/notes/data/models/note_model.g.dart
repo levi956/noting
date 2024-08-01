@@ -20,7 +20,7 @@ class NoteAdapter extends TypeAdapter<Note> {
       id: fields[0] as String,
       title: fields[1] as String,
       content: fields[2] as String,
-      date: fields[3] as DateTime,
+      createdAt: fields[3] as DateTime,
       deletedAt: fields[4] as DateTime?,
     );
   }
@@ -36,7 +36,7 @@ class NoteAdapter extends TypeAdapter<Note> {
       ..writeByte(2)
       ..write(obj.content)
       ..writeByte(3)
-      ..write(obj.date)
+      ..write(obj.createdAt)
       ..writeByte(4)
       ..write(obj.deletedAt);
   }

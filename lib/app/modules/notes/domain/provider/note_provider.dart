@@ -18,7 +18,7 @@ class NoteNotifier extends Notifier<List<Note>> {
 
   void _loadNotes() {
     state = box.values.where((note) => note.deletedAt == null).toList()
-      ..sort((a, b) => b.date.compareTo(a.date));
+      ..sort((a, b) => a.date.compareTo(b.date));
   }
 
   void addOrUpdate(Note note) {

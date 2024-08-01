@@ -32,7 +32,7 @@ class ViewNotePage extends HookConsumerWidget {
                 note.copyWith(
                   title: titleController.text,
                   content: notesController.text,
-                  date: DateTime.now(),
+                  createdAt: DateTime.now(),
                 ),
               );
           pop<Note>(context, null);
@@ -49,6 +49,13 @@ class ViewNotePage extends HookConsumerWidget {
               scrollDirection: Axis.vertical,
               child: Column(
                 children: [
+                  Text(
+                    note.date,
+                    style: TextStyle(
+                      fontSize: TextSizes.size12,
+                      color: color.always7F7F7F,
+                    ),
+                  ),
                   TextField(
                     controller: titleController,
                     maxLines: 1,

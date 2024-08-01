@@ -19,8 +19,11 @@ class DeletedNotesNotifier extends StateNotifier<List<Note>> {
   final box = Hive.box<Note>('notes');
 
   void loadDeletedNotes() {
-    List<Note> deleted =
-        box.values.where((note) => note.deletedAt != null).toList();
+    List<Note> deleted = box.values
+        .where((note) => note.deletedAt != null)
+        .toList()
+      ..sort((a, b) => a.date.compareTo(b.date));
+
     state = [...deleted];
   }
 
