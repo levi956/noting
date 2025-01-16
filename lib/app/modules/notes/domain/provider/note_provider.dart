@@ -32,9 +32,11 @@ class NoteNotifier extends Notifier<List<Note>> {
     _loadNotes();
   }
 
-  void delete(Note note) {
-    note.deletedAt = DateTime.now();
-    note.save();
+  void delete(Note note) async {
+    final updatedNote = note.copyWith(
+      deletedAt: DateTime.now(),
+    );
+    await box.put(note.id, updatedNote);
     ref.read(deletedNotesProvider.notifier).loadDeletedNotes();
     _loadNotes();
   }
